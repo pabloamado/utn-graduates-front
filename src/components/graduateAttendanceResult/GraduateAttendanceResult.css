@@ -1,0 +1,27 @@
+.graduate-results {
+    margin-top: 20px;
+}
+
+.graduate-result {
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.graduate-result h3 {
+    margin-top: 0;
+    flex: 1; /* Flex grow para que ocupe el espacio disponible */
+    min-width: 200px; /* Ancho mínimo para garantizar que no se colapse */
+}
+
+.graduate-result p {
+    margin: 5px 10px; /* Margen derecho para espaciar los elementos */
+    flex: 1; /* Flex grow para que ocupe el espacio disponible */
+    min-width: 100px; /* Para asegurar que los textos no se colapsen */
+}
+
+.graduate-result button {
+    margin-left: auto; /* Mueve el botón al extremo derecho */
+}

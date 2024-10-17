@@ -1,0 +1,48 @@
+.generic-form {
+    border: 1px solid #87cefa; /* LightSkyBlue */
+    background-color: #e6f7ff; /* Light cyan */
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block; /* Para centrar el formulario */
+}
+
+.generic-form form {
+    display: table;
+    width: 100%;
+}
+
+.generic-form label {
+    display: table-row;
+    margin-bottom: 10px;
+}
+
+.generic-form label > span {
+    display: table-cell;
+    padding: 5px;
+    vertical-align: middle;
+}
+
+.generic-form input {
+    padding: 5px;
+    width: calc(100% - 10px); /* Ajustar ancho del input */
+    box-sizing: border-box;
+}
+
+.generic-form button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    display: block; /* Para centrar el botón */
+    margin: 0 auto; /* Para centrar el botón */
+}
+
+.generic-form button:hover {
+    background-color: #c0ddf8;
+}
+
+

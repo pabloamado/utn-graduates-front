@@ -1,0 +1,57 @@
+.attendance-searcher {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    background-color: #f9f9f9;
+    margin-top: 16px;
+}
+
+.attendance-searcher .graduate-result {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.attendance-searcher .graduate-result h3 {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+.attendance-searcher .graduate-result p {
+    margin: 4px 0;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.attendance-searcher .graduate-result button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+.attendance-searcher .graduate-result button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.attendance-searcher .graduate-result button:hover:not(:disabled) {
+    background-color: #c0ddf8;;
+}
+
+.attendance-searcher .graduate-result button:disabled:hover {
+    background-color: #c0ddf8;
+}
+
+.attendance-searcher .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+}

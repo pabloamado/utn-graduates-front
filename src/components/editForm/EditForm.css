@@ -1,0 +1,41 @@
+.edit-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.edit-form input[type="text"] {
+    padding: 5px;
+    flex: 1; /* Flex grow para ocupar el espacio disponible */
+    min-width: 150px; /* Ancho mínimo para garantizar que no se colapse */
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+.edit-form label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex: 1;
+    margin: 0; /* Sin margen para evitar espacios innecesarios */
+}
+
+.edit-form select {
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    min-width: 150px;
+}
+
+.edit-form button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+.edit-form button:hover {
+    background-color: #0056b3;
+}

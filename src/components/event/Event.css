@@ -1,0 +1,48 @@
+.event {
+    margin-bottom: 20px;
+    border: 1px solid #031f2f;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #ececec;;
+}
+
+.event-header {
+    cursor: pointer;
+    padding: 5px;
+    transition: background-color 0.3s ease;
+}
+
+
+.event-header h3 {
+    color: #0056b3;
+    font-family: 'Arial', sans-serif;
+    font-size: 20px;
+}
+
+.event-header p {
+    font-family: 'Arial', sans-serif;
+    font-size: 18px;
+}
+
+.event-header:hover {
+    background-color: #c0ddf8;
+}
+.timeslots-section {
+    padding: 10px;
+}
+
+.timeslots-list {
+    margin-top: 10px;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.div-add-timeslot-button {
+    padding-bottom: 10px;
+}
+
+.add-timeslot-button {
+    top: 10px; /* Ajusta la posición verticalmente según sea necesario */
+    right: 10px; /* Ajusta la posición horizontalmente según sea necesario */
+}
+

@@ -1,0 +1,32 @@
+.timeslot {
+    border: 1px solid #031f2f;
+    background-color: #e3edf2;
+    padding: 0px 3px 0px 3px;
+    margin: 10px 30px;
+    border-radius: 5px;
+}
+
+.timeslot-header {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.timeslot-header p {
+        font-family: 'Arial', sans-serif;
+        font-size: 17px;
+}
+
+.timeslot-header h4{
+    font-family: 'Arial', sans-serif;
+    font-size: 18px;
+}
+
+.timeslot-header:hover {
+    background-color: #c0ddf8;
+}
+
+.attendance-list {
+    margin-top: 10px;
+    padding: 10px 10px;
+    border-radius: 5px;
+}
