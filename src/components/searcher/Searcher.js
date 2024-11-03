@@ -16,7 +16,7 @@ function Searcher() {
     }, [currentPage, param]);
 
     const handleSearch = async () => {
-        try {//`http://localhost:8080/graduate-service/graduate/search`
+        try {
             const response = await axios.get(ENDPOINTS.GET_GRADUATES, {
                 params: {param, page: currentPage, size: 20}
             });
@@ -49,6 +49,19 @@ function Searcher() {
         }));
     };
 
+    const onDeleteGraduate = async (id) => {
+        try {
+            await axios.delete(ENDPOINTS.GRADUATE_BY_ID(id));
+            setResults(prevResults => ({
+                ...prevResults,
+                content: prevResults.content.filter(graduate => graduate.id !== id)
+            }));
+        } catch (error) {
+            console.error('Error deleting graduate:', error);
+            alert('Hubo un problema al borrar el registro. ' + error.response.data.message);
+        }
+    };
+
     return (
         <div className="graduate-searcher">
             <SearchBar
@@ -56,7 +69,7 @@ function Searcher() {
                 onInputChange={handleInputChange}
                 onSearchClick={handleSearchClick}
             />
-            <GraduateResult results={results.content} onUpdateGraduate={onUpdateGraduate}/>
+            <GraduateResult results={results.content} onUpdateGraduate={onUpdateGraduate} onDeleteGraduate={onDeleteGraduate}/>
             <Pagination
                 totalPages={results.totalPages}
                 currentPage={currentPage}

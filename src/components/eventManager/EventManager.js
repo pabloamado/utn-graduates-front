@@ -18,7 +18,6 @@ function EventManager() {
 
     const loadEvents = async (page) => {
         try {
-            //`http://localhost:8080/graduate-service/events?page=${page}&size=20`
             const response = await axios.get(ENDPOINTS.GET_PAGINATED_EVENTS(page));
             setEvents(response.data.content);
             setTotalPages(response.data.totalPages);
@@ -41,6 +40,16 @@ function EventManager() {
         toggleAddEventForm();
     };
 
+    const handleDeleteEvent = async (deletedEventId) => {
+        try {
+            await axios.delete(ENDPOINTS.DELETE_EVENT(deletedEventId));
+            setEvents(events.filter(event => event.id !== deletedEventId));
+        } catch (error) {
+            console.error('Error deleting event:', error);
+            alert('Hubo un problema al intentar eliminar el evento. ' + error.response.data.message);
+        }
+    }
+
     return (
         <div className="event-manager">
             <h2>Panel de Eventos</h2>
@@ -53,12 +62,12 @@ function EventManager() {
                 <GenericForm
                     url={ENDPOINTS.POST_EVENT}
                     onSubmit={handleAddEvent}
-                    showDateField={true} // Mostrar campo de fecha para eventos
+                    showDateField={true}
                 />
             )}
             <div className="events-list">
                 {events.map(event => (
-                    <Event key={event.id} event={event}/>
+                    <Event key={event.id} event={event} onDelete={handleDeleteEvent}/>
                 ))}
             </div>
             <Pagination

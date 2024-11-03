@@ -30,3 +30,10 @@
     padding: 10px 10px;
     border-radius: 5px;
 }
+
+.attendance-buttons {
+    justify-content: center;
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}

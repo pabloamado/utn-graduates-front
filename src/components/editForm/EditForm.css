@@ -36,6 +36,10 @@
     cursor: pointer;
 }
 
+.edit-form-buttons {
+    display: flex;
+    gap: 15px;
+}
 .edit-form button:hover {
     background-color: #0056b3;
 }

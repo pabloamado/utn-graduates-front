@@ -19,7 +19,7 @@ function GraduateAttendanceResult({ results, onAddAttendance, existingAttendance
                 <div key={graduate.id} className="graduate-result">
                     <h3>{graduate.fullname}</h3>
                     <p>DNI: {graduate.dni}</p>
-                    <p>Especialidad: {graduate.specialty}</p>
+                    <p>Especialidad: {graduate.specialty.name}</p>
                     <button
                         onClick={() => onAddAttendance(graduate)}
                         disabled={isGraduateAlreadyAdded(graduate)}

@@ -1,75 +1,104 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import './EditForm.css';
 import {ENDPOINTS} from '../config/Config';
 
-function EditForm({graduate, onUpdateGraduate, onCancelEdit}) {
+function EditForm({graduate, onUpdateGraduate, onCancel}) {
     const [formData, setFormData] = useState({
-        specialty: graduate.specialty,
-        contactType: graduate.contactType,
+        specialty: graduate.specialty || { name: "" },
+        contactType: graduate.contactType || { name: "" },
         fullname: graduate.fullname,
-        dni: graduate.dni
+        dni: graduate.dni,
+        genre: graduate.genre,
+        phone: graduate.phone || null,
+        email: graduate.email
     });
+    const [specialtyOptions, setSpecialtyOptions] = useState([]);
+    const [contactTypeOptions, setContactTypeOptions] = useState([]);
+
+    useEffect(() => {
+        const fetchOptions = async () => {
+            try {
+                const [specialtyResponse, contactTypeResponse] = await Promise.all([
+                    axios.get(ENDPOINTS.SPECIALTIES),
+                    axios.get(ENDPOINTS.CONTACT_TYPES)
+                ]);
+                setSpecialtyOptions(specialtyResponse.data);
+                setContactTypeOptions(contactTypeResponse.data);
+            } catch (error) {
+                console.error("Error fetching options:", error);
+            }
+        };
+        fetchOptions();
+    }, []);
 
     const handleInputChange = (e) => {
-        const {name, value} = e.target;
-        setFormData(prevState => ({
+        const { name, value } = e.target;
+        setFormData((prevState) => ({
             ...prevState,
-            [name]: value
+            [name]: value === "" ? null : value // Cambia aquí para que se envíe null
         }));
     };
-
     const handleUpdateClick = async () => {
-        if (formData.specialty.trim() === '' || formData.contactType.trim() === '') {
-            alert('Todos los campos son obligatorios.');
-            return;
-        }
-        //`http://localhost:8080/graduate-service/graduate/${graduate.id}`
         try {
-            const response = await axios.put(ENDPOINTS.UPDATE_GRADUATE_BY_ID(graduate.id), formData);
+            const response = await axios.put(ENDPOINTS.GRADUATE_BY_ID(graduate.id), formData);
             onUpdateGraduate(response.data);
-            onCancelEdit();
+            onCancel();
         } catch (error) {
             console.error('Error updating graduate:', error);
             alert('Hubo un problema al actualizar el registro. Por favor, intenta nuevamente. ' + error.response.data.message);
         }
     };
 
-    const contactTypes = {
-        OTHER: "Otro",
-        EXTENSION: "Extension",
-        RESEARCH: "Investigador",
-        ADVISER: "Consejero",
-        REFERRED: "Referido",
-        CLUB: "Club",
-        NON_TEACHING: "No docente"
-    };
-
     return (
         <div className="edit-form">
-            <label>Especialidad:
+            <h3>{graduate.fullname}</h3>
+            <p>DNI: {graduate.dni}</p>
+            <label>Teléfono:
                 <input
                     type="text"
-                    name="specialty"
-                    value={formData.specialty}
+                    name="phone"
+                    value={formData.phone}
                     onChange={handleInputChange}
-                    placeholder="Especialidad"
                 />
             </label>
-            <label>
-                Tipo de Contacto:
+            <label>Email:
+                <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                />
+            </label>
+            <label>Especialidad:
                 <select
-                    name="contactType"
-                    value={formData.contactType}
+                    name="specialty"
+                    value={formData.specialty.name}
                     onChange={handleInputChange}
                 >
-                    {Object.entries(contactTypes).map(([key, value]) => (
-                        <option key={key} value={key}>{value}</option>
+                    <option value="">Seleccione una especialidad</option>
+                    {specialtyOptions.map((specialty, index) => (
+                        <option key={index} value={specialty}>{specialty}</option>
                     ))}
                 </select>
             </label>
-            <button onClick={handleUpdateClick}>Actualizar</button>
-            <button onClick={onCancelEdit}>Cancelar</button>
+            <label>Tipo de Contacto:
+                <select
+                    name="contactType"
+                    value={formData.contactType.name}
+                    onChange={handleInputChange}
+                >
+                    <option value="">Seleccione un tipo de contacto</option>
+                    {contactTypeOptions.map((contactType, index) => (
+                        <option key={index} value={contactType}>{contactType}</option>
+                    ))}
+                </select>
+            </label>
+            <div className="edit-form-buttons">
+                <button onClick={handleUpdateClick}>Actualizar</button>
+                <button onClick={onCancel}>Cancelar</button>
+            </div>
+
         </div>
     );
 }

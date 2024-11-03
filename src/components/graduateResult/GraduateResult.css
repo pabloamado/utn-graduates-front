@@ -21,6 +21,11 @@
     flex: 1; /* Flex grow para que ocupe el espacio disponible */
 }
 
+.graduate-result-buttons {
+    display: flex;
+    gap: 15px;
+}
+
 .graduate-result button {
     margin-left: auto; /* Mueve el botón al extremo derecho */
 }

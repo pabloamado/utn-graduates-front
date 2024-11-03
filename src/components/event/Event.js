@@ -1,11 +1,10 @@
-import React, {useEffect, useState} from 'react';
-import axios from 'axios';
+import React, {useState} from 'react';
 import TimeSlot from '../timeSlot/TimeSlot';
 import './Event.css';
 import GenericForm from "../genericForm/GenericForm";
 import {ENDPOINTS} from '../config/Config';
 
-function Event({event}) {
+function Event({event, onDelete}) {
     const [showTimeSlots, setShowTimeSlots] = useState(false);
     const [showAddTimeSlot, setShowAddTimeSlot] = useState(false);
     const [newTimeSlot, setNewTimeSlot] = useState({name: '', startTime: '', endTime: ''});
@@ -24,11 +23,16 @@ function Event({event}) {
         setShowAddTimeSlot(false);
     };
 
-    const handleDeleteTimeSlot = (deletedTimeSlotId) => {
-        console.log("Deleting from state, timeslot ID:", deletedTimeSlotId);
-        setTimeSlots(timeSlots.filter(slot => slot.id !== deletedTimeSlotId));
+    const handleDeleteTimeSlot = (timeSlotId) => {
+        console.log("Deleting from state, timeslot ID:", timeSlotId);
+        setTimeSlots(timeSlots.filter(slot => slot.id !== timeSlotId));
     };
 
+    const handleDeleteEvent = async () => {
+        if (window.confirm("¿Estás seguro de que deseas borrar este evento?")) {
+            onDelete(event.id);
+        }
+    }
     return (
         <div className="event">
             <div className="event-header" onClick={toggleTimeSlots}>
@@ -39,9 +43,9 @@ function Event({event}) {
             </div>
             {showTimeSlots && (
                 <div className="timeslots-section">
-                    <div className="div-add-timeslot-button">
-                        <button className="add-timeslot-button"
-                                onClick={toggleAddTimeSlot}>{showAddTimeSlot ? "Cancelar" : "Añadir sección"}</button>
+                    <div className="div-add-timeslot-buttons">
+                        <button onClick={toggleAddTimeSlot}>{showAddTimeSlot ? "Cancelar" : "Añadir sección"}</button>
+                        <button onClick={handleDeleteEvent}>Eliminar Evento</button>
                     </div>
                     {showAddTimeSlot && (
                         <GenericForm

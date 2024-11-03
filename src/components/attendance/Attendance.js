@@ -9,7 +9,6 @@ function Attendance({attendance, onUpdate}) {
     const handleTogglePresent = async (e) => {
         const updatedPresent = e.target.checked;
         try {
-            //`http://localhost:8080/graduate-service/attendance`
             await axios.put(ENDPOINTS.UPDATE_ATTENDANCE, {
                 id: attendance.id,
                 present: updatedPresent
@@ -26,7 +25,7 @@ function Attendance({attendance, onUpdate}) {
         <div className="attendance">
             <p>Nombre: {attendance.fullname}</p>
             <p>DNI:{attendance.dni}</p>
-            <p>Especialidad:{attendance.specialty}</p>
+            <p>Especialidad:{attendance.specialty.name}</p>
             <label>
                 Presente:
                 <input

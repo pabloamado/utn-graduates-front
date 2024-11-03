@@ -37,7 +37,7 @@ function TimeSlot({timeSlot, onDelete}) {
                 present: false,
                 fullname: graduate.fullname,
                 dni: graduate.dni,
-                specialty: graduate.specialty
+                specialty: graduate.specialty || { name: "" },
             };
             setNewAttendances([...newAttendances, newAttendance]);
         }
@@ -52,7 +52,7 @@ function TimeSlot({timeSlot, onDelete}) {
                 present: att.present,
                 fullname: att.fullname,
                 dni: att.dni,
-                specialty: att.specialty
+                specialty: att.specialty || { name: "" },
             }))
         };
 
@@ -86,9 +86,10 @@ function TimeSlot({timeSlot, onDelete}) {
             </div>
             {showAttendances && (
                 <div className="attendances-section">
-                    <button onClick={toggleAddAttendance}>{showAddAttendance ? 'Cancelar' : 'Añadir Invitado'}</button>
-                    <button onClick={handleDeleteTimeSlot}>Eliminar Sección</button>
-
+                    <div className="attendance-buttons">
+                        <button onClick={toggleAddAttendance}>{showAddAttendance ? 'Cancelar' : 'Añadir Invitado'}</button>
+                        <button onClick={handleDeleteTimeSlot}>Eliminar Sección</button>
+                    </div>
                     {showAddAttendance && (
                         <div>
                             <AttendanceSearcher
