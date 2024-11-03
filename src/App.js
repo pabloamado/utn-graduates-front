@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Route, Routes, Link, Navigate} from 'react-rout
 import Searcher from './components/searcher/Searcher';
 import EventManager from './components/eventManager/EventManager';
 import RegisterLoader from './components/registerLoader/RegisterLoader';
+import CsvLoader from './components/CsvLoader/CsvLoader';
 import './App.css';
 
 function App() {
@@ -20,6 +21,9 @@ function App() {
                         <li>
                             <Link to="/upload">Carga de Registros</Link>
                         </li>
+                        <li>
+                            <Link to="/upload-csv">Carga de CSV</Link>
+                        </li>
                     </ul>
                 </nav>
                 <Routes>
@@ -27,6 +31,7 @@ function App() {
                     <Route path="/search" element={<Searcher />} />
                     <Route path="/events" element={<EventManager />} />
                     <Route path="/upload" element={<RegisterLoader />} />
+                    <Route path="/upload-csv" element={<CsvLoader />} />
                 </Routes>
             </div>
         </Router>

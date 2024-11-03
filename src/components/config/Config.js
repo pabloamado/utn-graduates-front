@@ -15,4 +15,5 @@ export const ENDPOINTS = {
     SPECIALTIES: `${API_BASE_URL}/graduate/specialty`,
     DELETE_CONTACT_TYPE : (name) => `${API_BASE_URL}/graduate/contact_type/${name}`,
     DELETE_SPECIALTY : (name) => `${API_BASE_URL}/graduate/specialty/${name}`,
+    UPLOAD_GRADUATES_CSV : `${API_BASE_URL}/files`
 };
