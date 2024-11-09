@@ -34,7 +34,7 @@ input[type="file"] {
     margin-top: 10px; /* Espacio superior para separar del contenido */
 }
 
-button {
+.csv-loader button {
     background-color: #007bff; /* Color azul */
     color: white; /* Texto blanco */
     border: none; /* Sin borde */

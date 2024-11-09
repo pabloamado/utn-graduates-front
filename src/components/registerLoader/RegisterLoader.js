@@ -90,12 +90,12 @@ function RegisterLoader() {
         <div className="register-loader">
             {/* Specialty input */}
             <InputRow
-                title="Categorías"
+                title="Especialidad"
                 value={specialty}
                 onChange={(e) => setSpecialty(e.target.value)}
                 onSubmit={handleCreateSpecialty}
-                placeholder="Nueva categoría"
-                buttonText="Agregar categoría"
+                placeholder="Nueva Especialidad"
+                buttonText="Agregar Especialidad"
             />
 
             {/* Specialty list */}
@@ -108,7 +108,7 @@ function RegisterLoader() {
                 onChange={(e) => setContactType(e.target.value)}
                 onSubmit={handleCreateContactType}
                 placeholder="Nuevo tipo de contacto"
-                buttonText="Agregar tipo"
+                buttonText="Agregar Tipo"
             />
 
             {/* Contact type list */}

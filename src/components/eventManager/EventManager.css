@@ -22,10 +22,6 @@
     border-radius: 5px;
 }
 
-.div-add-event-button {
-    margin-bottom: 10px;
-}
-
 .add-event-button {
     top: 10px; /* Ajusta la posición verticalmente según sea necesario */
     right: 10px; /* Ajusta la posición horizontalmente según sea necesario */
