@@ -37,7 +37,7 @@ function TimeSlot({timeSlot, onDelete}) {
                 present: false,
                 fullname: graduate.fullname,
                 dni: graduate.dni,
-                specialty: graduate.specialty || { name: "" },
+                specialty: graduate.specialty || {name: ""},
             };
             setNewAttendances([...newAttendances, newAttendance]);
         }
@@ -52,7 +52,7 @@ function TimeSlot({timeSlot, onDelete}) {
                 present: att.present,
                 fullname: att.fullname,
                 dni: att.dni,
-                specialty: att.specialty || { name: "" },
+                specialty: att.specialty || {name: ""},
             }))
         };
 
@@ -69,8 +69,10 @@ function TimeSlot({timeSlot, onDelete}) {
 
     const handleDeleteTimeSlot = async () => {
         try {
-            await axios.delete(ENDPOINTS.DELETE_TIMESLOT(timeSlot.id));
-            onDelete(timeSlot.id);
+            if (window.confirm("¿Estás seguro de que deseas borrar esta seccion?")) {
+                await axios.delete(ENDPOINTS.DELETE_TIMESLOT(timeSlot.id));
+                onDelete(timeSlot.id);
+            }
         } catch (error) {
             console.error('Error deleting timeslot:', error);
             alert('Hubo un problema al intentar eliminar la sección. ' + error.response.data.message);
@@ -102,20 +104,20 @@ function TimeSlot({timeSlot, onDelete}) {
 
                     <div className="attendance-list">
                         <div>
-                        {attendances.map(attendance => (
-                            <Attendance
-                                key={attendance.id}
-                                attendance={attendance}
-                                onUpdate={handleUpdateAttendance}
-                            />
-                        ))}
-                        {newAttendances.map(attendance => (
-                            <Attendance
-                                key={attendance.graduateId}
-                                attendance={attendance}
-                                onUpdate={handleUpdateAttendance}
-                            />
-                        ))}
+                            {attendances.map(attendance => (
+                                <Attendance
+                                    key={attendance.id}
+                                    attendance={attendance}
+                                    onUpdate={handleUpdateAttendance}
+                                />
+                            ))}
+                            {newAttendances.map(attendance => (
+                                <Attendance
+                                    key={attendance.graduateId}
+                                    attendance={attendance}
+                                    onUpdate={handleUpdateAttendance}
+                                />
+                            ))}
                         </div>
                     </div>
                 </div>
