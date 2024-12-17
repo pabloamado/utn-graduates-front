@@ -10,7 +10,7 @@ function SearchBar({ param, onInputChange, onSearchClick }) {
                 type="text"
                 value={param}
                 onChange={onInputChange}
-                placeholder="Buscar por DNI o Nombre"
+                placeholder="DNI, Nombre, mail o telefono"
             />
         </div>
     );
