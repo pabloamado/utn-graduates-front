@@ -18,7 +18,7 @@ function Searcher() {
     const handleSearch = async () => {
         try {
             const response = await axios.get(ENDPOINTS.GET_GRADUATES, {
-                params: {param, page: currentPage, size: 20}
+                params: {param, page: currentPage, size: 10}
             });
             setResults(response.data);
         } catch (error) {

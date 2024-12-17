@@ -139,8 +139,8 @@ function GraduateForm({onCancel}) {
                 </select>
             </h3>
             <div className="graduate-form-buttons">
-                <button onClick={handleSubmit}>Registrar</button>
                 <button onClick={onCancel}>Cancelar</button>
+                <button onClick={handleSubmit}>Registrar</button>
             </div>
         </div>
     );
